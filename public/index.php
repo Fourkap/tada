@@ -1,8 +1,10 @@
 <?php
 
+require_once (dirname(__DIR__) . '/config.php');
+
 require_once dirname(__DIR__)."/includes/setup.php";
 
-$DATABASE = new PDO('mysql:host=127.0.0.1;port=3306;dbname=taches_db;charset=utf8mb4', 'tasker', 'tasker');
+$DATABASE = new PDO('mysql:host=' . DB_HOST . ';port=3306;dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS);
 $DATABASE->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $context = array("database" => $DATABASE, "datadir" =>  getenv('DATADIR') ? getenv('DATADIR') : $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "data");
