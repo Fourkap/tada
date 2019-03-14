@@ -3,10 +3,11 @@
 require_once (dirname(__DIR__) . '/config.php');
 
 require_once dirname(__DIR__)."/includes/setup.php";
+require_once dirname(__DIR__) . '/includes/base/modele/PDF.php';
 
-$DATABASE = new PDO('mysql:host=' . DB_HOST . ';port=3306;dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS);
-$DATABASE->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+use Modele\PDF;
 
+$DATABASE = new PDF(getenv('DATADIR'));
 $context = array("database" => $DATABASE, "datadir" =>  getenv('DATADIR') ? getenv('DATADIR') : $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "data");
 
 $nomControleur = isset($_GET['controleur']) ? $_GET['controleur'] : 'taches';
