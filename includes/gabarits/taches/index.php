@@ -24,6 +24,9 @@
           <thead>
             <tr>
               <td colspan="3">
+
+               <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="myInput" onkeyup="myFunction()" placeholder="Exemple : Alex">
+
                 <form action="?controleur=taches&action=ajouter" class="pure-form"  method="post">
                   <label>Nouvelle :</label>
                   <input type="text" size="60" name="texte" id="tache-texte">
@@ -62,5 +65,36 @@
         </table>
       </section>
     </section>
+    <script>function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, j, display;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+            display = "";
+            for (j = 0; j < tr[i].getElementsByTagName("td").length; j++) {
+                td = tr[i].getElementsByTagName("td")[j];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        display = "block";
+                    }
+                }
+            }
+            if (display != "block") {
+                tr[i].style.display = "none";
+            }
+            else
+            {
+                tr[i].style.display = "";
+            }
+        }
+    }
+</script>
+
+
   </body>
 </html>
